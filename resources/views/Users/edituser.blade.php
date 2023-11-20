@@ -270,7 +270,6 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	{{-- @include('sweetalert::alert') --}}
     @include('Navigation')
 
 <div class="container-xl">
@@ -283,7 +282,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-            <form id="brokersform" action="{{url('/update_user/'. $user->id)}}" method='POST' autocomplete='off' enctype="multipart/form-data">
+            <form id="edituser" action="{{url('/update_user/'. $user->id)}}" method='POST' autocomplete='off' enctype="multipart/form-data">
                 {{csrf_field() }}
                 <div class="card-body">
                     <div class="row">
@@ -330,99 +329,6 @@ $(document).ready(function(){
 		    </div>
 	</div>        
 </div>
-<!-- Edit Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Add Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" value="Add">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Edit Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<div class="form-group">
-						<label>Name</label>
-						<input type="text" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea class="form-control" required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Phone</label>
-						<input type="text" class="form-control" required>
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Save">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-<!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form>
-				<div class="modal-header">						
-					<h4 class="modal-title">Delete Employee</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div class="modal-body">					
-					<p>Are you sure you want to delete these Records?</p>
-					<p class="text-warning"><small>This action cannot be undone.</small></p>
-				</div>
-				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-{{-- @include('layouts.Footer') --}}
-
 </body>
 </html>
 <script>
@@ -432,51 +338,31 @@ $(document).ready(function(){
            return value == '' || value.trim().length != 0;
        }, "No space please and don't leave it empty");
 
-      $('#brokerridersform').validate({
+      $('#edituser').validate({
         rules:
         {
-            empname: { required: true},
-            gender: { required: true},
-            dob: {required: true},
-            doj: {required: true},
-            designation : {required: true},
-			manager : {required: true},
-			email : {required: true},
-			password : {required: true},
+            name: { required: true},
+            role: { required: true},
+            email: {required: true},
+            password: {required: true},
         },
         messages:
         {
-          empname:
+          name:
           {
             required: "Please Enter Name",
           },
-          gender:
+          role:
           {
-            required: "Please Select Gender",
+            required: "Please Select role",
           },
-          dob:
+          email:
           {
-            required: "Please Select DOB",
+            required: "Please Select email",
           },
-          doj:
+          password:
           {
-            required: "Please Select DOJ",
-          },
-          designation:
-          {
-            required: "Please enter designation",
-          },
-		  manager:
-          {
-            required: "Please enter your reporting manager",
-          },
-		  email:
-          {
-            required: "Please enter email",
-          },
-		  password:
-          {
-            required: "Please enter password",
+            required: "Please Select password",
           },
         },
         errorElement: 'span',

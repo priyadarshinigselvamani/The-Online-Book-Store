@@ -269,7 +269,6 @@ $(document).ready(function(){
 
 </head>
 <body>
-	{{-- @include('sweetalert::alert') --}}
     @include('Navigation')
 
 
@@ -288,52 +287,6 @@ $(document).ready(function(){
 
 				</div>
 			</div>
-			{{-- <div style="display:flex" class="col-md-12">
-				<div class="form-row col-sm-12">
-					<div class="form-group ml-2" style="width:15%;">
-						<label for="fromdate">Employee Name</label>
-						<select type="dropdown" class="form-control select2" id ="empname" >
-							<option value="0">--Name--</option>
-							@foreach($employeename as $key_name => $name)
-								<option value = "{{$name}}">{{$name}}</option>
-							@endforeach
-						</select>
-					</div>
-				<div class="form-group ml-2" style="width:15%;">
-						<label for="taskstageid">Designation</label>
-						<select type="dropdown" class="form-control select2" id ="designation" >
-							<option value="0">--Designation--</option>
-							@foreach($uniquedesignation as $key => $itype)
-								<option value = "{{$itype}}">{{$itype}}</option>
-							@endforeach
-						</select>
-					</div>
-					<div class="form-group ml-2" style="width:15%;">
-						<label for="fromdate">Date of joining</label>
-						<input type="date" name="date" class="form-control" id="doj">
-						@if ($errors->has('date')) <p style="color:red;">{{ $errors->first('date') }}</p> @endif
-					</div>
-
-					&nbsp;&nbsp;&nbsp;
-					<div class="form-group ml-1" style="width:15%;">
-						<label for="fromdate">From date</label>
-						<input type="date" name="date" class="form-control" id="fromdate">
-						@if ($errors->has('date')) <p style="color:red;">{{ $errors->first('date') }}</p> @endif
-					</div>
-					&nbsp;&nbsp;&nbsp;
-					<div class="form-group ml-1" style="width:15%;">
-						<label for="todate">To date</label>
-						<input type="date" name="date" class="form-control" id="todate">
-						@if ($errors->has('date')) <p style="color:red;">{{ $errors->first('date') }}</p> @endif
-					</div>
-					&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-warning form-control btns col-sm-1 ml-1" style="margin-top:30px;" id="bapply" onclick="filterProduct()">Apply</button>
-
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-info form-control col-sm-1 btns ml-1" style="margin-top:30px;" id="bclear" onclick="clearFilter()">Clear</button><span class="text-danger" style="margin-left:34%" id="errorDate"></span>
-				</div>
-		    </div> --}}
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -397,31 +350,6 @@ $(document).ready(function(){
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<!-- Delete Modal HTML -->
-<div id="importModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form id="importform" action="{{url('/import_employee_data_sheet')}}" method='POST' autocomplete='off' enctype="multipart/form-data">
-				{{csrf_field() }}
-					<div class="modal-header">
-						<h4 class="modal-title">Add employee via excel</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<label>Upload Employee Sheet<span style="color:red;">*</span>&nbsp;</label>
-						<div class="col-md-12">
-						  <input type="file" class="form-control" id="empsheet" name='empsheet'/>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Submit">
-					</div>
 			</form>
 		</div>
 	</div>

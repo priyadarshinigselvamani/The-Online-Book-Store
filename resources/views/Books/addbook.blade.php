@@ -375,48 +375,33 @@ $(document).ready(function(){
       $('#brokerridersform').validate({
         rules:
         {
-            empname: { required: true},
-            gender: { required: true},
-            dob: {required: true},
-            doj: {required: true},
-            designation : {required: true},
-			manager : {required: true},
-			email : {required: true},
-			password : {required: true},
+            title: { required: true},
+            author: { required: true},
+            description: {required: true},
+            genre: {required: true},
+            publisher : {required: true},
         },
         messages:
         {
-          empname:
+          title:
           {
             required: "Please Enter Name",
           },
-          gender:
+          author:
           {
-            required: "Please Select Gender",
+            required: "Please Select author",
           },
-          dob:
+          description:
           {
-            required: "Please Select DOB",
+            required: "Please Select description",
           },
-          doj:
+          genre:
           {
-            required: "Please Select DOJ",
+            required: "Please Select genre",
           },
-          designation:
+          publisher:
           {
-            required: "Please enter designation",
-          },
-		  manager:
-          {
-            required: "Please enter your reporting manager",
-          },
-		  email:
-          {
-            required: "Please enter email",
-          },
-		  password:
-          {
-            required: "Please enter password",
+            required: "Please enter publisher",
           },
         },
         errorElement: 'span',
