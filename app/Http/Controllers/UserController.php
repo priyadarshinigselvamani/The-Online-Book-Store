@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Auth;
 
 class UserController extends Controller
 {
     public function addUserForm()
     {
-        return view("Users.adduser");
+        if(Auth::user()->role == "admin"){
+            return view("Users.adduser");
+        }else{
+            return redirect("/home");
+        }
     }
 
     public function insertUSer(Request $request)
@@ -50,16 +55,22 @@ class UserController extends Controller
 
     public function deleteUser($id)
     {
-        Users::where('id', $id)->delete();
-        // alert()->success('Employee data deleted successfully')->autoClose(3000);
-        return redirect('/users_list');
+        if(Auth::user()->role == "admin"){
+            Users::where('id', $id)->delete();
+            return redirect('/users_list');
+        }else{
+            return redirect("/home");
+        }
     }
 
     public function restoreUser($id)
     {
-        Users::withTrashed()->find($id)->restore();
-        // alert()->success('Employee data deleted successfully')->autoClose(3000);
-        return redirect('/users_list');
+        if(Auth::user()->role == "admin"){
+            Users::withTrashed()->find($id)->restore();
+            return redirect('/users_list');
+        }else{
+            return redirect("/home");
+        }
     }
 
     public function showUserEditForm($id)

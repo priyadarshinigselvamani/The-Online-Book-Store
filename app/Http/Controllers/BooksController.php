@@ -11,32 +11,42 @@ class BooksController extends Controller
 {
     public function addBookForm()
     {
-        return view("Books.addbook");
+        if(Auth::user()->role == "admin"){
+            return view("Books.addbook");
+        }else{
+            return redirect("/home");
+        }
+            
+        
     }
 
     public function insertBook(Request $request)
     {
-        $file = $request->file('image');
-        if ($request->hasfile('image')) {
-            $fileName = $file->getClientOriginalName();
-            $filePath = $file->storeAs('public/books/', $fileName);
-        } else {
-            $fileName = '';
-        }
-        $books = Books::create([
-            'title' => $request->title,
-            'author' => $request->author,
-            'description' => $request->description,
-            'genre' => $request->genre,
-            'isbn' => $request->isbn,
-            'published_on' => $request->publishedon,
-            'publisher' => $request->publisher,
-            'image' => $fileName,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        if(Auth::user()->role == "admin"){
+            $file = $request->file('image');
+            if ($request->hasfile('image')) {
+                $fileName = $file->getClientOriginalName();
+                $filePath = $file->storeAs('public/books/', $fileName);
+            } else {
+                $fileName = '';
+            }
+            $books = Books::create([
+                'title' => $request->title,
+                'author' => $request->author,
+                'description' => $request->description,
+                'genre' => $request->genre,
+                'isbn' => $request->isbn,
+                'published_on' => $request->publishedon,
+                'publisher' => $request->publisher,
+                'image' => $fileName,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
 
-        return redirect('/books_list');
+            return redirect('/books_list');
+        }else{
+            return redirect("/home");
+        }
 
     }
 
@@ -90,16 +100,23 @@ class BooksController extends Controller
 
     public function deleteBook($id)
     {
-        Books::where('id', $id)->delete();
-        // alert()->success('Employee data deleted successfully')->autoClose(3000);
-        return redirect('/books_list');
+        if(Auth::user()->role == "admin"){
+            Books::where('id', $id)->delete();
+            return redirect('/books_list');
+        }else{
+            return redirect("/home");
+        }
+        
     }
 
     public function restoreBook($id)
     {
-        Books::withTrashed()->find($id)->restore();
-        // alert()->success('Employee data deleted successfully')->autoClose(3000);
-        return redirect('/books_list');
+        if(Auth::user()->role == "admin"){
+            Books::withTrashed()->find($id)->restore();
+            return redirect('/books_list');
+        }else{
+            return redirect("/home");
+        }
     }
 
     public function showBookEditForm($id)

@@ -245,10 +245,8 @@ label{
 </style>
 <script>
 $(document).ready(function(){
-	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
 	
-	// Select/Deselect checkboxes
 	var checkbox = $('table tbody input[type="checkbox"]');
 	$("#selectAll").click(function(){
 		if(this.checked){
@@ -270,7 +268,6 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	{{-- @include('sweetalert::alert') --}}
     @include('Navigation')
 
 <div class="container-xl">
@@ -346,11 +343,7 @@ $(document).ready(function(){
             name: { required: true},
             role: { required: true},
             email: {required: true},
-            doj: {required: true},
-            designation : {required: true},
-			manager : {required: true},
-			email : {required: true},
-			password : {required: true},
+            password: {required: true},
         },
         messages:
         {
@@ -366,25 +359,9 @@ $(document).ready(function(){
           {
             required: "Please Select email",
           },
-          doj:
+          password:
           {
-            required: "Please Select DOJ",
-          },
-          designation:
-          {
-            required: "Please enter designation",
-          },
-		  manager:
-          {
-            required: "Please enter your reporting manager",
-          },
-		  email:
-          {
-            required: "Please enter email",
-          },
-		  password:
-          {
-            required: "Please enter password",
+            required: "Please Select password",
           },
         },
         errorElement: 'span',
